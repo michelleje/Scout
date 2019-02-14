@@ -1,4 +1,7 @@
 # itp460-scout
--Gracie
+- Dylan
 - Michelle
 - Asia
+- Gracie
+- Michelle
+
