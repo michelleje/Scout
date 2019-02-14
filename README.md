@@ -1,2 +1,8 @@
 # itp460-scout
-Sarah Kim
+- Sarah Kim
+- Dylan
+- Michelle
+- Asia
+- Gracie
+- Michelle
+
