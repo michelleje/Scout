@@ -20,7 +20,7 @@
 
   .smallpic {
     width: 100%;
-    max-width: 160px;
+    max-width: 145px;
   }
 
   .images {
@@ -28,13 +28,43 @@
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: auto auto;
     grid-column-gap: 10px;
-    grid-row-gap: 10%;
+    grid-row-gap: 40px;
     margin-top: 10%;
   }
 
   .team {
     max-width: 440px;
   }
+
+  .bighead {
+    font-size: 36px;
+    padding: 20px;
+  }
+
+  #summary {
+    padding-bottom: 15px;
+    font-size: 16px;
+  }
+
+  .card-title {
+    font-weight: bold;
+    color: #7CBD1E;
+  }
+
+  .card {
+    padding: 10px;
+    /*border: 1px solid black;*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0px;
+  }
+
+  .bigsecond {
+    font-size: 28px;
+  }
+
+  
+
+
 
 </style>
 
@@ -81,17 +111,18 @@
 
 
     <!-- Jumbotron Header -->
-    <div class="my-4 text-center m-3">
-      <h1>Our SCout Story</h1>
-      <p>Founded by six USC srudents, SCout eases the process of securing off-campus housing for Trojans. Using our inruitive search platform, easily find hundreds of rental listings from a variety of management companies, backed by honest reviews from other students like you.</p>
+    <div class="my-4 text-center m-3" id="intro">
+      <h2 class="bighead">Our SCout Story</h2>
+      <p id="summary">Founded by six USC students, SCout eases the process of securing off-campus housing for Trojans. Using our intuitive search platform, easily find hundreds of rental listings from a variety of management companies, backed by honest reviews from other students like you.</p>
+
   
 
 
     <!-- Page Features -->
 
-    <div class="row text-center">
+    <div class="row text-center cardrow">
 
-      <div class="col-lg-3 col-md-4 mb-4 mx-auto">
+      <div class="col-lg-4 col-md-4 mb-4 mx-auto">
         <div class="card h-100 w-100">
           <div class="card-body">
             <img src="img/easy.png" style="width: 60px; margin-bottom: 15px;">
@@ -101,7 +132,7 @@
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-4 mb-4 mx-auto">
+      <div class="col-lg-4 col-md-4 mb-4 mx-auto">
         <div class="card h-100 w-100">
           <div class="card-body">
             <img src="img/convenient.png" style="width: 60px; margin-bottom: 15px;">
@@ -111,7 +142,7 @@
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-4 mb-4 mx-auto">
+      <div class="col-lg-4 col-md-4 mb-4 mx-auto">
         <div class="card h-100 w-100">
           <div class="card-body">
             <img src="img/transparent.png" style="width: 60px; margin-bottom: 15px;">
@@ -124,49 +155,52 @@
 <!--     /.row -->
   </div>
 
-  <hr>
-      <h2 class="text-center m-4">Meet the Team</h2>
+  <br><br>
+  <!-- <hr> -->
+  <br><br>
+
+      <h2 class="text-center m-4 bigsecond">Meet the Team</h2>
 
 
   <div class="row">
 
-    <div class="col-lg-6 col-md-6 mb-4 team">
+    <div class="col-lg-5 col-md-5 mb-4">
 
-      <img src="img/team_green.png" style="width: 100%; margin: 20px; margin-top: 80px;">
+      <img src="img/team_green.png" class="team" style="width: 100%; margin: 20px; margin-top: 80px;">
 
     </div>
 
-    <div class="col-lg-6 col-md-6 mb-4">
+    <div class="col-lg-7 col-md-7 mb-4 text-center">
       <div class="images">
 
         <div class="imga">
           <img class="smallpic" src="img/gracie.png">
-          <br><br><p>Gracie Beal</p>
+          <br><br><p class="name">Gracie Beal</p>
         </div>
         
         <div class="imgb">
           <img class="smallpic" src="img/jonalynn.jpeg">
-          <br><br><p>Jonalynn Chang</p>
+          <br><br><p class="name">Jonalynn Chang</p>
         </div>
         
         <div class="imgc">
           <img class="smallpic" src="img/asia.jpg">
-          <br><br><p>Asia Clarkson</p>
+          <br><br><p class="name">Asia Clarkson</p>
         </div>
 
         <div class="imgd">
           <img class="smallpic" src="img/dylan.jpeg">
-          <br><br><p>Dylan Cohen</p>
+          <br><br><p class="name">Dylan Cohen</p>
         </div>
 
         <div class="imge">
           <img class="smallpic" src="img/michelle.jpeg">
-          <br><br><p>Michelle Je</p>
+          <br><br><p class="name">Michelle Je</p>
         </div>
 
         <div class="imgf">
           <img class="smallpic" src="img/sarah.jpeg">
-          <br><br><p>Sarah Kim</p>
+          <br><br><p class="name">Sarah Kim</p>
         </div>
 
       </div> <!-- /images -->
