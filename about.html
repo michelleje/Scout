@@ -16,6 +16,28 @@
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
 
+  <style>
+
+  .smallpic {
+    width: 100%;
+    max-width: 160px;
+  }
+
+  .images {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10%;
+    margin-top: 10%;
+  }
+
+  .team {
+    max-width: 440px;
+  }
+
+</style>
+
 </head>
 
 <body>
@@ -59,9 +81,9 @@
 
 
     <!-- Jumbotron Header -->
-    <div class="jumbotron my-4 text-center">
+    <div class="my-4 text-center m-3">
       <h1>Our SCout Story</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus</p>
+      <p>Founded by six USC srudents, SCout eases the process of securing off-campus housing for Trojans. Using our inruitive search platform, easily find hundreds of rental listings from a variety of management companies, backed by honest reviews from other students like you.</p>
   
 
 
@@ -69,41 +91,93 @@
 
     <div class="row text-center">
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
+      <div class="col-lg-3 col-md-4 mb-4 mx-auto">
+        <div class="card h-100 w-100">
           <div class="card-body">
-            <img src="img/easy.png" style="width: 60px; margin-bottom: 10px;">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            <img src="img/easy.png" style="width: 60px; margin-bottom: 15px;">
+            <h4 class="card-title">Easy</h4>
+            <p class="card-text">Don't know where to start? We'll make sure to get your foot in the door (literally).</p>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
+      <div class="col-lg-3 col-md-4 mb-4 mx-auto">
+        <div class="card h-100 w-100">
           <div class="card-body">
-            <img src="img/convenient.png" style="width: 60px; margin-bottom: 10px;">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            <img src="img/convenient.png" style="width: 60px; margin-bottom: 15px;">
+            <h4 class="card-title">Convenient</h4>
+            <p class="card-text">Save time by browsing apartments and houses from the comfort of your laptop.</p>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
+      <div class="col-lg-3 col-md-4 mb-4 mx-auto">
+        <div class="card h-100 w-100">
           <div class="card-body">
-            <img src="img/transparent.png" style="width: 60px; margin-bottom: 10px;">
+            <img src="img/transparent.png" style="width: 60px; margin-bottom: 15px;">
 
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            <h4 class="card-title">Transparent</h4>
+            <p class="card-text">With honest reviews written by other students, we'll tell it like it is - no surprises.</p>
           </div>
         </div>
       </div>
-
-    </div>
 <!--     /.row -->
   </div>
-  </div>
+
+  <hr>
+      <h2 class="text-center m-4">Meet the Team</h2>
+
+
+  <div class="row">
+
+    <div class="col-lg-6 col-md-6 mb-4 team">
+
+      <img src="img/team_green.png" style="width: 100%; margin: 20px; margin-top: 80px;">
+
+    </div>
+
+    <div class="col-lg-6 col-md-6 mb-4">
+      <div class="images">
+
+        <div class="imga">
+          <img class="smallpic" src="img/gracie.png">
+          <br><br><p>Gracie Beal</p>
+        </div>
+        
+        <div class="imgb">
+          <img class="smallpic" src="img/jonalynn.jpeg">
+          <br><br><p>Jonalynn Chang</p>
+        </div>
+        
+        <div class="imgc">
+          <img class="smallpic" src="img/asia.jpg">
+          <br><br><p>Asia Clarkson</p>
+        </div>
+
+        <div class="imgd">
+          <img class="smallpic" src="img/dylan.jpeg">
+          <br><br><p>Dylan Cohen</p>
+        </div>
+
+        <div class="imge">
+          <img class="smallpic" src="img/michelle.jpeg">
+          <br><br><p>Michelle Je</p>
+        </div>
+
+        <div class="imgf">
+          <img class="smallpic" src="img/sarah.jpeg">
+          <br><br><p>Sarah Kim</p>
+        </div>
+
+      </div> <!-- /images -->
+
+    </div>
+
+
+  </div> <!-- /row -->
+
+
+  </div> <!-- end container -->
   
 <!--
   <footer class="py-5 bg-dark">
