@@ -40,16 +40,13 @@
           </li>
 -->
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Listings</a>
+            <a class="nav-link" href="results.html">Listings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Management</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
+            <a class="nav-link" href="management_companies.html">Management</a>
           </li>
         </ul>
       </div>
@@ -66,14 +63,14 @@
       
       <div id="search" class="text-center">
       <input class="form-control" type="search" placeholder="What are you looking for? Ex: Ellendale Place" aria-label="Search">
-      <a href="#" class="btn btn-primary btn-lg">Find</a>
+      <a href="results.html" class="btn btn-primary btn-lg">Find</a>
       <br>
       <br>
 <div class="btn-group">      
-  <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button id="bedrooms" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       # of Bedrooms
     </button>
-    <div class="dropdown-menu">
+    <div class="dropdown-menu bedroom-menu">
       <a class="dropdown-item" href="#">Studio</a>
       <a class="dropdown-item" href="#">1</a>
       <a class="dropdown-item" href="#">2</a>
@@ -86,10 +83,10 @@
   </div>
         
 <div class="btn-group">      
-  <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button id="bathrooms" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       # of Bathrooms
     </button>
-    <div class="dropdown-menu">
+    <div class="dropdown-menu bathroom-menu">
       <a class="dropdown-item" href="#">1</a>
       <a class="dropdown-item" href="#">2</a>
       <a class="dropdown-item" href="#">3</a>
@@ -99,10 +96,10 @@
   </div>
         
 <div class="btn-group">      
-  <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button id="propertytype" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Property Type
     </button>
-    <div class="dropdown-menu">
+    <div class="dropdown-menu property-menu">
       <a class="dropdown-item" href="#">House</a>
       <a class="dropdown-item" href="#">Apartment</a>
       <a class="dropdown-item" href="#">Condo</a>
@@ -137,6 +134,30 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+  <script>
+
+     $(document).ready(function(){
+            $(".bedroom-menu a").click(function(){
+            $("#bedrooms").text($(this).text());
+            });
+        });
+
+      $(document).ready(function(){
+            $(".bathroom-menu a").click(function(){
+            $("#bathrooms").text($(this).text());
+            });
+        });
+
+       $(document).ready(function(){
+            $(".property-menu a").click(function(){
+            $("#propertytype").text($(this).text());
+            });
+        });
+
+
+  </script>
 
 </body>
 
