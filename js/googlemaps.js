@@ -1,29 +1,15 @@
-function initialize() {
-    var myLatlng = new google.maps.LatLng(43.565529, -80.197645);
-    var mapOptions = {
-        zoom: 8,
-        center: myLatlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-     //=====Initialise Default Marker    
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'marker'
-     //=====You can even customize the icons here
-    });
-
-     //=====Initialise InfoWindow
-    var infowindow = new google.maps.InfoWindow({
-      content: "<B>Skyway Dr</B>"
-  });
-
-   //=====Eventlistener for InfoWindow
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.open(map,marker);
-  });
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: -25.344, lng: 131.036};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_vh9t-odV8_9_ulFDHKE4OrmMk1hG7kI&callback=initMap">
+ 
