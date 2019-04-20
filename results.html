@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137447568-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-137447568-1');
+</script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -113,30 +123,28 @@
 
   <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <!--      <a class="navbar-brand" href="#">Logo Here</a>-->
-        <img href="#" src="img/scoutwhite.png" style="width:8rem;">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Listings</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Management</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
-            </li>
-          </ul>
-        </div>
+    <div class="container">
+
+       <a href="homepage.html"><img src="img/scoutwhite.png" style="width:8rem;"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="results.html">Listings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="management_companies.html">Management</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
     <div class="container">
       <div id="search-bar" style="margin-bottom: 2%;">
@@ -153,10 +161,10 @@
           <hr>
 
           <div class="btn-group">
-            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button id="amenities" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Amenities
             </button>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu amenities-menu">
               <a class="dropdown-item" href="#">Parking</a>
               <a class="dropdown-item" href="#">Gated Community</a>
               <a class="dropdown-item" href="#">Furnished</a>
@@ -168,7 +176,7 @@
           </div>
 
           <div class="btn-group">
-            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button id="price" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Price Per Month
             </button>
             <div class="dropdown-menu">
@@ -180,7 +188,7 @@
           </div>
 
           <div class="btn-group">
-            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button id="occupancy" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Occupancy
             </button>
             <div class="dropdown-menu">
@@ -205,10 +213,10 @@
 
 
           <div class="btn-group">
-            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button id="space" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Space Type
             </button>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu space-menu">
               <a class="dropdown-item" href="#">Studio</a>
               <a class="dropdown-item" href="#">1 BR</a>
               <a class="dropdown-item" href="#">2 BR</a>
@@ -220,10 +228,10 @@
           </div>
 
           <div class="btn-group">
-            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button id="management" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Management
             </button>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu management-menu">
               <a class="dropdown-item" href="#">First Choice Housing</a>
               <a class="dropdown-item" href="#">StuHo</a>
               <a class="dropdown-item" href="#">Mosaic Housing</a>
@@ -247,12 +255,12 @@
           <br>
 
           <div id="refresh">
-            <button class="btn btn-primary btn-sm btn-sm-refresh" type="button">Refresh</button>
+            <a href="results.html"><button class="btn btn-primary btn-sm btn-sm-refresh" type="button">Refresh</button></a>
 
             <p>
             <br>
-            <h2>Results for "Ellendale Place"</h2>
-            <p>20 of 500</p>
+            <h2>Results for "One Bedroom Apartment"</h2>
+            <p>4 of 25</p>
             <hr>
         </div>
 
@@ -261,12 +269,12 @@
           <!-- <div class="row jumbotron my-0"> -->
           <div class="row my-0 gray">
             <div class="col-lg-4 col-md-12 col-sm-12">
-              <img src="img-results/avalon.png" class="pic">
+              <img src="img-the-centurion/centurion1.jpg" class="pic">
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
-              <h5>Avalon Apartments</h5>
+              <a href="single-listing-centurion.html"><h5>The Centurion</h5></a>
               <p class="light-gray-text figure-caption">1248 W Adams Blvd, Los Angeles, CA 90007</p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption"> $1,000-4,000</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption"> $1,000-2,000</span> </p>
               <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 6-12 Months</span> </p>
               <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption"> 2BR2BA</span> </p>
               <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> First Choice Housing</span> </p>
@@ -294,13 +302,13 @@
 
           <div class="row my-0 white">
             <div class="col-lg-4 col-md-12 col-sm-12">
-              <img src="img-results/avalon.png" class="pic">
+              <img src="img-the-pad/pad1.jpg" class="pic">
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
-              <h5>Avalon Apartments</h5>
-              <p class="light-gray-text figure-caption">1248 W Adams Blvd, Los Angeles, CA 90007</p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption"> $1,000-4,000</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 6-12 Months</span> </p>
+              <a href="single-listing.html"><h5>The Pad</h5></a>
+              <p class="light-gray-text figure-caption">805 W 30th Street, Los Angeles, CA 90007</p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption"> $2,000-4,000</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 6-24 Months</span> </p>
               <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption"> 2BR2BA</span> </p>
               <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> First Choice Housing</span> </p>
               <p class="" style="color: #7CBD1E; line-height: 0.25;">Contact: <span class="figure-caption"> firstchoice@gmail.com</span></p>
@@ -314,29 +322,29 @@
                 <span class="star">&#9733;</span>
               </div>
               <br>
-              <p class="light-gray-text float-right">0.75 miles from USC</p>
+              <p class="light-gray-text float-right">1.75 miles from USC</p>
               <br>
               <br>
               <br>
               <br>
               <br>
               <br>
-              <p class="light-gray-text float-right">10/200 Left</p>
+              <p class="light-gray-text float-right">1/2 Left</p>
             </div>
           </div>
 
           <div class="row my-0 gray">
             <div class="col-lg-4 col-md-12 col-sm-12">
-              <img src="img-results/avalon.png" class="pic">
+              <img src="img-gateway/gateway1.jpeg" class="pic">
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
-              <h5>Avalon Apartments</h5>
-              <p class="light-gray-text figure-caption">1248 W Adams Blvd, Los Angeles, CA 90007</p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption"> $1,000-4,000</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 6-12 Months</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption"> 2BR2BA</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> First Choice Housing</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Contact: <span class="figure-caption"> firstchoice@gmail.com</span></p>
+              <a href="single-listing-gateway.html"><h5>University Gateway</h5></a>
+              <p class="light-gray-text figure-caption">200 S Figueroa Street, Los Angeles, CA 90007</p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption"> $600-1,200</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 9-12 Months</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption"> 3BR2BA</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> University Gateway</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Contact: <span class="figure-caption"> info@livewithgw.com</span></p>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
               <div class="float-right">
@@ -360,16 +368,16 @@
 
           <div class="row my-0 white">
             <div class="col-lg-4 col-md-12 col-sm-12">
-              <img src="img-results/avalon.png" class="pic">
+              <img src="img-chez-ronne/chezronne1.jpg" class="pic">
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
-              <h5>Avalon Apartments</h5>
-              <p class="light-gray-text figure-caption">1248 W Adams Blvd, Los Angeles, CA 90007</p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption"> $1,000-4,000</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 6-12 Months</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption"> 2BR2BA</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> First Choice Housing</span> </p>
-              <p class="" style="color: #7CBD1E; line-height: 0.25;">Contact: <span class="figure-caption"> firstchoice@gmail.com</span></p>
+              <a href="single-listing-chez.html"><h5>Chez Ronne</h5></a>
+              <p class="light-gray-text figure-caption">235 28th Street, Los Angeles, CA 90007</p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption"> $1,000-2,200</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 12-20 Months</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption"> 2BR1BA</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> Shrine Housing</span> </p>
+              <p class="" style="color: #7CBD1E; line-height: 0.25;">Contact: <span class="figure-caption"> leasing@shrineplace.com</span></p>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
               <div class="float-right">
@@ -408,6 +416,31 @@
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+   $(document).ready(function(){
+            $(".amenities-menu a").click(function(){
+            $("#amenities").text($(this).text());
+            });
+        });
+
+
+ $(document).ready(function(){
+            $(".space-menu a").click(function(){
+            $("#space").text($(this).text());
+            });
+        });
+
+
+ $(document).ready(function(){
+            $(".management-menu a").click(function(){
+            $("#management").text($(this).text());
+            });
+        });
+
+
+  </script>
 
   </body>
 </html>

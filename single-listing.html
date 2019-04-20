@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137447568-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-137447568-1');
+</script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,6 +48,10 @@
     color: #096017;
   }
 
+  h4 {
+    color: #096017;
+  }
+
   </style>
 
 </head>
@@ -48,36 +61,27 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <!--      <a class="navbar-brand" href="#">Logo Here</a>-->
-      <img href="#" src="img/scoutwhite.png" style="width:8rem;">
+
+       <a href="homepage.html"><img src="img/scoutwhite.png" style="width:8rem;"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mr-auto">
-          <!--
-          <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-    -->
-    <li class="nav-item">
-      <a class="nav-link" href="#">About</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Listings</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Management</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Contact Us</a>
-    </li>
-  </ul>
-</div>
-</div>
-</nav>
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="results.html">Listings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="management_companies.html">Management</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 <!-- Page Content -->
 <div class="container">
@@ -86,11 +90,10 @@
   <br>
   <br>
   <br>
-  <input class="form-control" type="search" placeholder="What street are you looking for" aria-label="Search">
-  <a href="#" class="btn btn-primary btn-lg">Find</a>
+  
   <br>
   <br>
-  <h6><a href="results.html">&lt Back</a></h6>
+  <h6 id="back"><a href="results.html">&lt Back to Results</a></h6>
   <hr>
   <br>
   <br>
@@ -146,7 +149,7 @@
       <div class="text-center">
         <!-- <button type="button" class="btn btn-primary">Contact Management</button> -->
         <div class="container-box rotated">
-          <button type="button" id="contact-management" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><a href="mailto: dylancoh@usc.edu"  style="color: white"  target="_blank" >Contact Management</a></button>
+          <button type="button" id="contact-management" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><a href="mailto: leasing@stuho.com?subject=Leasing%20Inquiry&body=Hi!%20I'd%20like%20to%20learn%20more%20about%20The%20Pad."  style="color: white"  target="_blank" >Contact Management</a></button>
         </div>
 
       </div>
@@ -235,49 +238,52 @@
 </div><!--row-->
 <hr>
 <br>
+<h4>Similar Listings</h4>
+<br>
+
 
 <div class="row text-center">
 
-  <div class="col-lg-3 col-md-6 mb-4">
-    <div class="card h-100">
-      <img class="card-img-top" src="img-gateway/gateway1.jpeg" alt="Gateway Image 1">
-      <div class="card-body">
-        <h4 class="card-title">University Gateway</h4>
-        <p class="card-text">2Br/2B </p>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="img-gateway/gateway1.jpeg" alt="Gateway Image 1">
+        <div class="card-body">
+          <h4 class="card-title">University Gateway</h4>
+          <p class="card-text">2Br/2B </p>
+        </div>
+        <div class="card-footer">
+          <a href="single-listing-gateway.html" class="btn btn-primary">Learn More</a>
+        </div>
       </div>
-      <div class="card-footer">
-        <a href="#" class="btn btn-primary">Find Out More!</a>
-      </div>
-    </div>
-  </div><!--column-->
+    </div><!--column-->
 
-  <div class="col-lg-3 col-md-6 mb-4">
-    <div class="card h-100">
-      <img class="card-img-top" src="img-chez-ronne/chezronne1.jpg" alt="Chez Ronne Image 1">
-      <div class="card-body">
-        <h4 class="card-title">Chez Ronne</h4>
-        <p class="card-text">3Br/2B </p>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="img-chez-ronne/chezronne1.jpg" alt="Chez Ronne Image 1">
+        <div class="card-body">
+          <h4 class="card-title">Chez Ronne</h4>
+          <p class="card-text">3Br/2B </p>
+        </div>
+        <div class="card-footer">
+          <a href="single-listing-chez.html" class="btn btn-primary">Learn More</a>
+        </div>
       </div>
-      <div class="card-footer">
-        <a href="#" class="btn btn-primary">Find Out More!</a>
-      </div>
-    </div>
-  </div><!--column-->
+    </div><!--column-->
 
-  <div class="col-lg-3 col-md-6 mb-4">
-    <div class="card h-100">
-      <img class="card-img-top" src="img-the-shrine/shrine1.jpg" alt="The Shrine Image 1">
-      <div class="card-body">
-        <h4 class="card-title">The Shrine</h4>
-        <p class="card-text">2Br/2B </p>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="img-the-shrine/shrine1.jpg" alt="The Shrine Image 1">
+        <div class="card-body">
+          <h4 class="card-title">The Shrine</h4>
+          <p class="card-text">2Br/2B </p>
+        </div>
+        <div class="card-footer">
+          <a href="single-listing-shrine.html" class="btn btn-primary">Learn More</a>
+        </div>
       </div>
-      <div class="card-footer">
-        <a href="#" class="btn btn-primary">Find Out More!</a>
-      </div>
-    </div>
-  </div><!--column-->
+    </div><!--column-->
 
-  <div class="col-lg-3 col-md-6 mb-4">
+<div class="col-lg-3 col-md-6 mb-4">
     <div class="card h-100">
       <img class="card-img-top" src="img-the-centurion/centurion1.jpg" alt="The Centurion Image 1">
       <div class="card-body">
@@ -285,7 +291,7 @@
         <p class="card-text">4Br/4B </p>
       </div>
       <div class="card-footer">
-        <a href="single-listing-centurion.html" class="btn btn-primary">Find Out More!</a>
+        <a href="single-listing-centurion.html" class="btn btn-primary">Learn More</a>
       </div>
     </div>
   </div><!--column-->
@@ -302,17 +308,14 @@
 
 
 
-
+<br><br><br>
 </div>
 <!-- /.container -->
 
 <!-- Footer -->
 
-<footer class="py-5 bg-dark">
-  <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; SCout ITP 460</p>
-  </div><!--container-->
-</footer>
+
+
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
