@@ -1,3 +1,21 @@
+<?php
+$userID = "delta";
+$userPw = "uscItp2019";
+$mySQL = new mysqli(
+    "460.itpwebdev.com",
+    $userID,
+    $userPw,
+    "delta_scout");
+
+    if($mySQL->connect_errno){
+      echo "ERROR ". $mySQL->connect_error;
+      exit();
+  }
+  else{
+      echo "all good with the db connection! ";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +45,7 @@
   }
 
   .img-listing img{
-      max-height: 200px;
+    width:100%;
   }
 
   .page-link {
@@ -44,8 +62,6 @@
     background-color: #7CBD1E;
     border-color: #7CBD1E;
 }
-    
- 
 
 
 </style>
@@ -134,7 +150,7 @@
         </div>
 
          <div class="col-3 pl-0 img-listing float-left">
-          <img src="img/stuho.jpeg" alt="">
+          <img src="img/stuho.jpg" alt="">
         </div>
 
         <h3>Stuho</h3>
@@ -157,7 +173,7 @@
         </div>
 
          <div class="col-3 pl-0 img-listing float-left">
-          <img class="company_image" src="img/lorenzo.jpeg" alt="">
+          <img src="img/lorenzo.jpg" alt="">
         </div>
 
         <h3>Lorenzo Apartments</h3>
