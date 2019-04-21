@@ -107,15 +107,24 @@
         border-radius: 0.2rem;
       }
 
+/*
       .map-img
       {
         width: 100%;
       }
+*/
+        
+
+        #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+        }
 
       #details
       {
         overflow: auto;
       }
+        
   </style>
 
   </head>
@@ -402,9 +411,16 @@
           </div> <!-- end details -->
 
 
+<!--
           <div id="map" class="col-5">
             <img class="map-img" src="img-results/map.png" alt="">
+              
           </div>
+-->
+
+<!--The div element for the Google map -->
+    <div id="map" class="col-5"></div>
+
 
         </div> <!-- end results -->
 
@@ -416,6 +432,26 @@
 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/bootstrap/js/googlemaps.js"></script>
+      
+      
+<!--START google maps script-->
+<script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 34.0260786, lng: -118.2879357};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 15, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_vh9t-odV8_9_ulFDHKE4OrmMk1hG7kI&callback=initMap">
+    </script>
+<!--END google maps script-->
 
 <script>
 
