@@ -12,7 +12,7 @@ $mySQL = new mysqli(
       exit();
   }
   else{
-      echo "all good with the db connection! ";
+      // echo "all good with the db connection! ";
   }
 ?>
 
@@ -116,99 +116,43 @@ $mySQL = new mysqli(
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus</p>
     </div> -->
     <div class="row">
-    
+    <?php
+     $sql = "SELECT * FROM management_companies";
+     $results =  $mySQL->query($sql);
 
-      <div class="col-12 jumbotron my-0">
-        <div class="float-right">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
+       if(!$results) {
+           echo "SQL error: ". $mySQL->error;
+           exit();
+       }
+     echo "<h2># of Listings: ".$results->num_rows."</h2>";
+     while($currentrow = $results->fetch_assoc())
+     {
+      echo "<div class='col-12 jumbotron my-0'>
+        <div class='float-right'>
+          <span class='fa fa-star checked'></span>
+          <span class='fa fa-star checked'></span>
+          <span class='fa fa-star checked'></span>
+          <span class='fa fa-star checked'></span>
+          <span class='fa fa-star'></span>
         </div>
 
-        <div class="col-3 pl-0 img-listing float-left">
-          <img src="img/gateway.png" alt="">
+        <div class='col-3 pl-0 img-listing float-left'>
+          <img src='".$currentrow["management_image"]."' alt=''>
         </div>
-        <h3>University Gateway</h3>
-        <p class="light-gray-text">3335 S Figueroa St, Los Angeles, CA 90007</p>
-        <p class="light-gray-text">Phone: (213) 279-3367</p>
-        <p class="light-gray-text">Email: management@livegw.com</p>
+        <h3><a href='".$currentrow["management_website"]."'>".$currentrow["management_name"]."</a></h3>
+        <p class='light-gray-text'>".$currentrow["management_address"]."</p>
+        <p class='light-gray-text'>".$currentrow["management_phone"]."</p>
+        <p class='light-gray-text'>".$currentrow["management_email"]."</p>
+        <p class='light-gray-text'>Rating: ".$currentrow["management_rating"]."/5 Stars</p>
 
         <br>
 
-        <a class="btn btn-primary btn-sm" href="results.html">View Listings</a>
-      </div>
+        <a class='btn btn-primary btn-sm' href='results.html'>View Listings</a>
+      </div>";
+     }
+      ?>
 
-      <div class="col-12 jumbotron-white my-0">
-        <div class="float-right">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-        </div>
 
-         <div class="col-3 pl-0 img-listing float-left">
-          <img src="img/stuho.jpg" alt="">
-        </div>
-
-        <h3>Stuho</h3>
-        <p class="light-gray-text">2595 S Hoover St Suite C, Los Angeles, CA 90007</p>
-        <p class="light-gray-text">Phone: (323) 731-1034</p>
-        <p class="light-gray-text">Email: leasing@stuho.com</p>
-        
-        <br>
-
-        <a class="btn btn-primary btn-sm" href="results.html">View Listings</a>
-      </div>
-
-      <div class="col-12 jumbotron my-0">
-        <div class="float-right">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-        </div>
-
-         <div class="col-3 pl-0 img-listing float-left">
-          <img src="img/lorenzo.jpg" alt="">
-        </div>
-
-        <h3>Lorenzo Apartments</h3>
-        <p class="light-gray-text">325 W. Adams Blvd, Los Angeles, CA 90007</p>
-        <p class="light-gray-text">Phone: (213) 863-4307</p>
-        <p class="light-gray-text">Email: info@thelorenzo.com</p>
-        
-        <br>
-
-        <a class="btn btn-primary btn-sm" href="results.html">View Listings</a>
-      </div>
-
-      <div class="col-12 jumbotron-white my-0">
-        <div class="float-right">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-        </div>
-
-         <div class="col-3 pl-0 img-listing float-left">
-          <img src="img/mosaic.png" alt="">
-        </div>
-
-        <h3>Mosaic Student Communities</h3>
-        <p class="light-gray-text">1248 W Adams Blvd, Los Angeles, CA 90007</p>
-        <p class="light-gray-text">Phone: (323) 733-2258</p>
-        <p class="light-gray-text">Email: leasing@livewithmosaic.com</p>
-        
-        <br>
-
-        <a class="btn btn-primary btn-sm" href="results.html">View Listings</a>
-      </div>
-    </div> <!-- .row -->
 
 
     <br>
