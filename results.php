@@ -206,23 +206,23 @@ $mySQL = new mysqli(
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <!--      <a class="navbar-brand" href="#">Logo Here</a>-->
-        <img href="http://460.itpwebdev.com/~delta/front-end/homepage.php" src="img/scoutwhite.png" style="width:8rem;">
+        <img href="#" src="img/scoutwhite.png" style="width:8rem;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="http://460.itpwebdev.com/~delta/front-end/about.html">About</a>
+              <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Listings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://460.itpwebdev.com/~delta/front-end/management_companies.php">Management</a>
+              <a class="nav-link" href="#">Management</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="mailto:jemichel@usc.edu">Contact Us</a>
+              <a class="nav-link" href="#">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -238,63 +238,7 @@ $mySQL = new mysqli(
 				</form>
       </div>
 
-      <!-- Filters -->
-      <div>
-				<form id="filters">
-        <div>
-          <h2>Filters</h2>
-
-          <hr>
-            <br>
-
-				<!-- Property Type -->
-				<div class="form-group" style="float:left; margin-right: 5px;">
-					<select form="filters" name="property-type" id="property_type">
-						<option value="" selected disabled>Property Type</option>
-						<?php while($row = $results_spacetypes->fetch_assoc() ): ?>
-
-						<option value="<?php echo $row['space_type_id']; ?>">
-							<?php echo $row['type']; ?>
-						</option>
-						<?php endwhile; ?>
-					</select>
-				</div>
-
-					<!-- Management Companies -->
-					<div class="form-group" style="float:left; margin-right: 5px;">
-						<select form="filters" name="management-company" id="management_company">
-							<option value="" selected disabled>Management Company</option>
-							<?php while($row = $results_management->fetch_assoc() ): ?>
-								<option value="<?php echo $row['management_id']; ?>">
-									<?php echo $row['management_name']; ?>
-								</option>
-							<?php endwhile; ?>
-						</select>
-					</div>
-
-					<div class="form-group" style="float:left;">
-						<select form="filters" name="price" id="price">
-							<option value="" selected disabled>Monthly Price</option>
-							<option value="500">$500 or less</option>
-							<option value="1000">$1,000 or less</option>
-							<option value="2000">$2,000 or less</option>
-							<option value="3000">$3,000 or less</option>
-							<option value="4000">$4,000 or less</option>
-							<option value="5000">$5,000 or less</option>
-							<option value="6000">$6,000 or less</option>
-							<option value="7000">$7,000 or less</option>
-							<option value="8000">$8,000 or less</option>
-							<option value="9000">$9,000 or less</option>
-							<option value="10000">$10,000 or less</option>
-							<option value="99999">$10,000+</option>
-						</select>
-					</div>
-
-				</form>
-          <br>
-
-          <div id="refresh">
-            <button class="btn btn-primary btn-sm btn-sm-refresh" type="button">Refresh</button>
+      
 
             <p>
             <br>
