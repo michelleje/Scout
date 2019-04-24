@@ -196,6 +196,14 @@ $mySQL = new mysqli(
     #details {
       overflow: auto;
     }
+
+    h3 a, h3 a:hover {
+    color: #096017;
+    }
+    .housing hr {
+      border-width: 1px ;
+      border-color: #A9A9AA;
+    }
   </style>
 
 </head>
@@ -311,7 +319,7 @@ $mySQL = new mysqli(
        echo  "<div class='row my-0 white'>
             <div class='col-lg-4 col-md-12 col-sm-12'>
             </div>
-            <div class='col-lg-5 col-md-6 col-sm-12'>
+            <div class='housing col-lg-5 col-md-6 col-sm-12'>
               <a href='single-listing.html'><h5>".$currentrow["property_name"]."</h5></a>".
               "<p class='light-gray-text figure-caption'>".$currentrow["property_address"]."</p>".
               "<p class='' style='color: #7CBD1E; line-height: 0.25;'>Price: <span class='figure-caption'> ".$currentrow["property_price"]."</span> </p>".
