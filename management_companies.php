@@ -105,6 +105,7 @@ $mySQL = new mysqli(
       <h2>Local Management Companies</h2>
 
 <hr class="mb-4">
+      
 
 
     <!-- Jumbotron Header -->
