@@ -1,68 +1,66 @@
 <?php
-$userID = "delta";
-$userPw = "uscItp2019";
-$mySQL = new mysqli(
-    "460.itpwebdev.com",
-    $userID,
-    $userPw,
-    "delta_scout");
 
-    if($mySQL->connect_errno){
-      echo "ERROR ". $mySQL->connect_error;
-      exit();
+  $host = "460.itpwebdev.com";
+  $user = "delta_admin";
+  $pass = "uscItp2019";
+  $db = "delta_scout";
+
+
+
+  $mysqli = new mysqli($host, $user, $pass, $db);
+
+  if ( $mysqli->connect_errno ){
+    echo $mysqli->connect_error;
+    exit();
   }
-  else{
-      echo "all good with the db connection! ";
-  }
-?>
-<?php
-	// TO DO: Establish DB connection, submit SQL query here. Remember to check for any MySQLi errors.
-	$host = "460.itpwebdev.com";
-	$user = "delta";
-	$pass = "uscItp2019";
-	$db = "delta_scout";
-
-	// Establish MySQL Connection.
-	$mysqli = new mysqli($host, $user, $pass, $db);
-
-	// Check for any connection errors.
-	if ($mysqli->connect_errno)
-	{
-		echo $mysqli->connect_error;
-		exit();
-	}
 
 	$mysqli->set_charset('utf8');
 
-	// Retreive listings from DB:
-	$sql_listings = "SELECT * FROM property_listings;";
-	$results_listings= $mysqli->query($sql_listings);
-	if ($results_listings == false)
-	{
-		echo $mysqli->error;
-		$mysqli->close();
-		exit();
-	}
+	$sql = "SELECT property_listings.listing_id, property_listings.property_name AS property_name, property_listings.property_price AS price, property_listings.property_address AS address, property_listings.bedrooms AS bedrooms, property_listings.bathrooms AS bathrooms,property_space_types.type AS space_type, management_companies.management_name AS management, management_companies.management_email, property_listings.image
+    FROM property_listings
+    LEFT JOIN management_companies
+      ON management_companies.management_id = property_listings.property_management_id
+      LEFT JOIN property_space_types
+      ON property_space_types.space_type_id = property_listings.property_space_type_id
+      WHERE 1=1";
+	
+  if ( isset( $_GET['usersearch'] ) && !empty( $_GET['usersearch']) ) {
+    $usersearch = $_GET['usersearch'];
+    $sql = $sql . " AND property_listings.property_name LIKE '%$usersearch%'";
+  } else {
+    $usersearch = "";
+  }
 
-	// Retreive space types from DB:
-	$sql_spacetypes = "SELECT * FROM property_space_types;";
-	$results_spacetypes= $mysqli->query($sql_spacetypes);
-	if ($results_spacetypes == false)
-	{
-		echo $mysqli->error;
-		$mysqli->close();
-		exit();
-	}
+  if ( isset( $_GET['bedrooms'] ) && !empty( $_GET['bedrooms']) ) {
+    $bedrooms = $_GET['bedrooms'];
+    $sql = $sql . " AND property_listings.bedrooms = $bedrooms";
+  }
 
-	// Retreive space types from DB:
-	$sql_management = "SELECT * FROM management_companies;";
-	$results_management= $mysqli->query($sql_management);
-	if ($results_management == false)
-	{
-		echo $mysqli->error;
-		$mysqli->close();
-		exit();
-	}
+   if ( isset( $_GET['bathrooms'] ) && !empty( $_GET['bathrooms']) ) {
+    $bathrooms = $_GET['bathrooms'];
+    $sql = $sql . " AND property_listings.bathrooms = $bathrooms";
+  }
+
+  if ( isset( $_GET['property_type'] ) && !empty( $_GET['property_type']) ) {
+    $property_type = $_GET['property_type'];
+    $sql = $sql . " AND property_space_types.space_type_id = $property_type";
+  }
+
+  $sql = $sql . ";";
+
+  $results = $mysqli->query($sql);
+
+
+  if ( $results == false ) {
+    echo $mysqli->error;
+    $mysqli->close();
+    exit();
+  }
+
+  $mysqli->close();
+
+
+
 ?>
 
 
@@ -238,66 +236,11 @@ $mySQL = new mysqli(
 				</form>
       </div>
 
-      <!-- Filters -->
-      <div>
-				<form id="filters">
-        <div>
-          <h2>Filters</h2>
-
-          <hr>
-
-				<!-- Property Type -->
-				<div class="form-group">
-					<select form="filters" name="property-type" id="property_type">
-						<option value="" selected disabled>Property Type</option>
-						<?php while($row = $results_spacetypes->fetch_assoc() ): ?>
-
-						<option value="<?php echo $row['space_type_id']; ?>">
-							<?php echo $row['type']; ?>
-						</option>
-						<?php endwhile; ?>
-					</select>
-				</div>
-
-					<!-- Management Companies -->
-					<div class="form-group">
-						<select form="filters" name="management-company" id="management_company">
-							<option value="" selected disabled>Management Company</option>
-							<?php while($row = $results_management->fetch_assoc() ): ?>
-								<option value="<?php echo $row['management_id']; ?>">
-									<?php echo $row['management_name']; ?>
-								</option>
-							<?php endwhile; ?>
-						</select>
-					</div>
-
-					<div class="form-group">
-						<select form="filters" name="price" id="price">
-							<option value="" selected disabled>Monthly Price</option>
-							<option value="500">$500 or less</option>
-							<option value="1000">$1,000 or less</option>
-							<option value="2000">$2,000 or less</option>
-							<option value="3000">$3,000 or less</option>
-							<option value="4000">$4,000 or less</option>
-							<option value="5000">$5,000 or less</option>
-							<option value="6000">$6,000 or less</option>
-							<option value="7000">$7,000 or less</option>
-							<option value="8000">$8,000 or less</option>
-							<option value="9000">$9,000 or less</option>
-							<option value="10000">$10,000 or less</option>
-							<option value="99999">$10,000+</option>
-						</select>
-					</div>
-
-				</form>
-          <br>
-
-          <div id="refresh">
-            <button class="btn btn-primary btn-sm btn-sm-refresh" type="button">Refresh</button>
+      
 
             <p>
             <br>
-            <h2>Results for "Ellendale Place"</h2>
+            <h2>Results for "<?php echo $usersearch ?>"</h2>
             <p>20 of 500</p>
             <hr>
         </div>
@@ -305,77 +248,34 @@ $mySQL = new mysqli(
     <div id="refresh">
       <a href="results.html"><button class="btn btn-primary btn-sm btn-sm-refresh" type="button">Refresh</button></a>
 
-      <p>
-        <br>
-        <h2>Results for "One Bedroom Apartment"</h2>
-        <p>4 of 25</p>
-        <hr>
-    </div>
 
     <div id="results" class="row">
       <div id="details" class="col-7">
-        <!-- <div class="row jumbotron my-0"> -->
-        <!-- <div class="row my-0 gray">
-          <div class="col-lg-4 col-md-12 col-sm-12">
-            <img src="img-the-centurion/centurion1.jpg" class="pic">
-          </div>
-          <div class="col-lg-5 col-md-6 col-sm-12">
-            <a href="single-listing-centurion.html">
-              <h5>The Centurion</h5>
-            </a>
-            <p class="light-gray-text figure-caption">1248 W Adams Blvd, Los Angeles, CA 90007</p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption">
-                $1,000-2,000</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 6-12
-                Months</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption">
-                2BR2BA</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> First
-                Choice Housing</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Contact: <span class="figure-caption">
-                firstchoice@gmail.com</span></p>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="float-right">
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star">&#9733;</span>
-            </div>
-            <br>
-            <p class="light-gray-text float-right">0.75 miles from USC</p>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <p class="light-gray-text float-right">10/200 Left</p>
-          </div>
-        </div> -->
-        <?php
-            $sql = "SELECT * FROM property_listings";
-            $results =  $mySQL->query($sql);
+        <?php while ( $row = $results->fetch_assoc()) : ?>
+            
+         
+    <div class='row my-0 white'>
 
-              if(!$results) {
-                  echo "SQL error: ". $mySQL->error;
-                  exit();
-              }
-            echo "<h2># of Listings:".$results->num_rows."</h2>";
-            while($currentrow = $results->fetch_assoc())
-          
-{
-       echo  "<div class='row my-0 white'>
             <div class='col-lg-4 col-md-12 col-sm-12'>
-            </div>
+              <img src='<?php echo $row['image']?>' class="pic">
+            </div> 
             <div class='col-lg-5 col-md-6 col-sm-12'>
-              <a href='single-listing.html'><h5>".$currentrow["property_name"]."</h5></a>".
-              "<p class='light-gray-text figure-caption'>".$currentrow["property_address"]."</p>".
-              "<p class='' style='color: #7CBD1E; line-height: 0.25;'>Price: <span class='figure-caption'> ".$currentrow["property_price"]."</span> </p>".
-              "<p class='' style='color: #7CBD1E; line-height: 0.25;'>Duration: <span class='figure-caption'>".$currentrow["property_lease_duration"]."</span> </p>".
-              "<p class='' style='color: #7CBD1E; line-height: 0.25;'>Management: <span class='figure-caption'>".$currentrow["management_property_id"]."</span> </p>".
-              "<p class='' style='color: #7CBD1E; line-height: 0.25;'>Contact: <span class='figure-caption'>".$currentrow["property_space_type"]."</span></p>
+
+            <a href="single-listing.php?listing_id=<?php echo $row['listing_id']; ?>">
+              <h5><?php echo $row['property_name']?></h5>
+            </a>
+
+              <h6><?php echo $row['bedrooms']?>BD/<?php echo $row['bathrooms']?>BA</h6>
+
+              <p class='light-gray-text figure-caption'><?php echo $row['address']?></p>
+
+              <p class='' style='color: #7CBD1E; line-height: 0.25;'>Price: <span class='figure-caption'>from $<?php echo $row['price']?>/month per person</span> </p>
+
+
+             <p class='' style='color: #7CBD1E; line-height: 0.25;'>Management: <span class='figure-caption'><?php echo $row['management']?></span> </p>
+              
+              <p class='' style='color: #7CBD1E; line-height: 0.25;'>Contact: <span class='figure-caption'><?php echo $row['management_email']?></span></p>
+
             </div>
             <div class='col-lg-3 col-md-6 col-sm-12'>
               <div class='float-right'>
@@ -392,92 +292,9 @@ $mySQL = new mysqli(
               <br>
               <br>
               <br>
-              <p class='light-gray-text float-right'>1/2 Left</p>
             </div>
-          </div>"
-          ;
-        }
-?>
-
-        <!-- <div class="row my-0 gray">
-          <div class="col-lg-4 col-md-12 col-sm-12">
-            <img src="img-gateway/gateway1.jpeg" class="pic">
           </div>
-          <div class="col-lg-5 col-md-6 col-sm-12">
-            <a href="single-listing-gateway.html">
-              <h5>University Gateway</h5>
-            </a>
-            <p class="light-gray-text figure-caption">200 S Figueroa Street, Los Angeles, CA 90007</p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption">
-                $600-1,200</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 9-12
-                Months</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption">
-                3BR2BA</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> University
-                Gateway</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Contact: <span class="figure-caption">
-                info@livewithgw.com</span></p>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="float-right">
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star">&#9733;</span>
-            </div>
-            <br>
-            <p class="light-gray-text float-right">0.75 miles from USC</p>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <p class="light-gray-text float-right">10/200 Left</p>
-          </div>
-        </div>
-
-        <div class="row my-0 white">
-          <div class="col-lg-4 col-md-12 col-sm-12">
-            <img src="img-chez-ronne/chezronne1.jpg" class="pic">
-          </div>
-          <div class="col-lg-5 col-md-6 col-sm-12">
-            <a href="single-listing-chez.html">
-              <h5>Chez Ronne</h5>
-            </a>
-            <p class="light-gray-text figure-caption">235 28th Street, Los Angeles, CA 90007</p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Price: <span class="figure-caption">
-                $1,000-2,200</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Duration: <span class="figure-caption"> 12-20
-                Months</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Space Type: <span class="figure-caption">
-                2BR1BA</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Management: <span class="figure-caption"> Shrine
-                Housing</span> </p>
-            <p class="" style="color: #7CBD1E; line-height: 0.25;">Contact: <span class="figure-caption">
-                leasing@shrineplace.com</span></p>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="float-right">
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star checked">&#9733;</span>
-              <span class="star">&#9733;</span>
-            </div>
-            <br>
-            <p class="light-gray-text float-right">0.75 miles from USC</p>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <p class="light-gray-text float-right">10/200 Left</p>
-          </div>
-        </div> -->
+            <?php endwhile; ?>
 
       </div> <!-- end details -->
 
