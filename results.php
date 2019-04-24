@@ -213,16 +213,13 @@ $mySQL = new mysqli(
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="about.html">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Listings</a>
+              <a class="nav-link" href="results.php">Listings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Management</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
+              <a class="nav-link" href="management_companies.php">Management</a>
             </li>
           </ul>
         </div>

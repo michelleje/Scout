@@ -72,7 +72,7 @@ $mySQL = new mysqli(
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
 
-       <a href="homepage.html"><img src="img/scoutwhite.png" style="width:8rem;"></a>
+       <a href="homepage.php"><img src="img/scoutwhite.png" style="width:8rem;"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -83,10 +83,10 @@ $mySQL = new mysqli(
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="results.html">Listings</a>
+            <a class="nav-link" href="results.php">Listings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="management_companies.html">Management</a>
+            <a class="nav-link" href="management_companies.php">Management</a>
           </li>
         </ul>
       </div>
