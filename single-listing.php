@@ -24,7 +24,7 @@ if ( !isset($_GET['listing_id']) || empty($_GET['listing_id'])) {
 
   $listing_id = $_GET['listing_id'];
 
-  $sql = "SELECT property_listings.listing_id, property_listings.property_name AS property_name, property_listings.property_price AS price, property_listings.property_address AS address, property_listings.bedrooms AS bedrooms, property_listings.bathrooms AS bathrooms,property_space_types.type AS space_type, management_companies.management_name AS management, management_companies.management_email, property_listings.image
+  $sql = "SELECT property_listings.listing_id, property_listings.property_name AS property_name, property_listings.property_price AS price, property_listings.property_address AS address, property_listings.bedrooms AS bedrooms, property_listings.bathrooms AS bathrooms,property_space_types.type AS space_type, management_companies.management_name AS management, management_companies.management_email, property_listings.image, property_listings.imagetwo, property_listings.imagethree, property_listings.imagefour, property_listings.imagefive, property_listings.description
     FROM property_listings
     LEFT JOIN management_companies
       ON management_companies.management_id = property_listings.property_management_id
@@ -73,7 +73,11 @@ if ( !isset($_GET['listing_id']) || empty($_GET['listing_id'])) {
   <meta name="author" content="">
 
   <title>
-    <!-- *************TO DO: ECHO PHP PROPERTY NAME IN HERE************* -->
+    <?php if (isset($row['property_name'])) :?>
+    <?php echo $row['property_name']?>
+    <?php else :?>
+      <?php echo 'Error'?>
+    <?php endif;?>
     </title>
 
   <!-- Bootstrap core CSS -->
@@ -182,30 +186,24 @@ if ( !isset($_GET['listing_id']) || empty($_GET['listing_id'])) {
         </ol>
         <div class="carousel-inner" style="width: 80%; margin:auto">
 
-    <!-- *************TO DO: ECHO PROPERTY IMAGES IN THESE************* -->
 
 
           <div class="carousel-item active">
             <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['image']?>' alt="<?php echo $row['property_name']?> 1">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['image']?>' alt="'<?php echo $row['property_name']?>' 2">
+            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['imagetwo']?>' alt="'<?php echo $row['property_name']?>' 2">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['image']?>' alt="'<?php echo $row['property_name']?>' 3">
+            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['imagethree']?>' alt="'<?php echo $row['property_name']?>' 3">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['image']?>' alt="'<?php echo $row['property_name']?>' 4">
+            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['imagefour']?>' alt="'<?php echo $row['property_name']?>' 4">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['image']?>' alt="'<?php echo $row['property_name']?>' 5">
+            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['imagefive']?>' alt="'<?php echo $row['property_name']?>' 5">
           </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['image']?>' alt="'<?php echo $row['property_name']?>' 6">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 img-thumbnail img-fluid max-width: 100%" src='<?php echo $row['image']?>' alt="'<?php echo $row['property_name']?>' 7">
-          </div>
+          
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -221,11 +219,9 @@ if ( !isset($_GET['listing_id']) || empty($_GET['listing_id'])) {
       <div class="text-center">
         <!-- <button type="button" class="btn btn-primary">Contact Management</button> -->
 
-    <!-- *************TO DO: BUILD EMAIL FUNCTION WITH PHP POPULATED EMAIL ADDRESS ************* -->
-
 
         <div class="container-box rotated">
-          <button type="button" id="contact-management" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><a href="mailto: leasing@stuho.com?subject=Leasing%20Inquiry&body=Hi!%20I'd%20like%20to%20learn%20more%20about%20The%20Centurion."  style="color: white"  target="_blank" >Contact Management</a></button>
+          <button type="button" id="contact-management" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><a href="mailto: <?php echo $row['management_email']?>?subject=Leasing%20Inquiry&body=Hi!%20I'd%20like%20to%20learn%20more%20about%20<?php echo $row['property_name']?>."  style="color: white"  target="_blank" >Contact Management</a></button>
         </div>
 
       </div>
@@ -241,28 +237,24 @@ if ( !isset($_GET['listing_id']) || empty($_GET['listing_id'])) {
       </h4>
 
       <p class="light-gray-text">
-        
-    <!-- *************TO DO: ECHO PHP ADDRESS IN HERE************* -->
-
+        <?php echo $row['address']?>
       </p>
 
 
-      <p><span class="space-info">Price:</span> <?php echo $row['property_name']?></p>
+      <p><span class="space-info">Price:</span> from $<?php echo $row['price']?>/month</p>
       
       <p><span class="space-info">Space Type:</span> <?php echo $row['bedrooms']?>BD/<?php echo $row['bathrooms']?>BA</p>
       
       <p><span class="space-info">Management:</span> <?php echo $row['management']?></p>
       
-      <p><span class="space-info">Contact:</span><?php echo $row['management_email']?></p>
+      <p><span class="space-info">Contact:</span> <?php echo $row['management_email']?></p>
       
       <p><span class="space-info">Description:</span>
-          <!-- *************TO DO: ECHO DESCRIPTION IN HERE************* -->
-      </p>
+<?php echo $row['description']?>      </p>
       
       <p><span class="space-info">Amenities:</span>
         <div class="row">
 
-    <!-- *************TO DO: ECHO AMENITIES IN HERE************* -->
 
           <div class="col-sm-5 container-fluid">
             <ul>
@@ -295,19 +287,16 @@ if ( !isset($_GET['listing_id']) || empty($_GET['listing_id'])) {
     <div class="col-sm-6">
       <!-- <h4>Reviews</h4> -->
 
-    <!-- *************TO DO: ECHO REVIEWS IN HERE************* -->
-
-
       <div class="jumbotron my-2">
         <h3>Jonathan L.</h3>
-        <p class="light-gray-text">Management is always so quick to help! The building is located close to Trader Joes - WHICH IS AWESOME!</p>
+        <p class="light-gray-text">The management at <?php echo $row['management']?> is always so quick to help! The building is located close to Trader Joes - WHICH IS AWESOME!</p>
       </div>
     </div><!--column-->
 
     <div class="col-sm-6">
       <div class="jumbotron my-2">
         <h3>Asia C.</h3>
-        <p class="light-gray-text">The building and units are really great! You wouldn't think so by just looking at the building from the outside. So modern and upgraded. The units are spacious and I love the details.</p>
+        <p class="light-gray-text">The building and units are really great! You wouldn't think so by just looking at the building from the outside. So modern and upgraded. It was so worth the $<?php echo $row['price']?> I paid per month.</p>
       </div>
     </div><!--column-->
 
@@ -319,14 +308,14 @@ if ( !isset($_GET['listing_id']) || empty($_GET['listing_id'])) {
 
       <div class="jumbotron my-2">
         <h3>Michael W.</h3>
-        <p class="light-gray-text">Loved this place. Great location. The people who lived there were friendly. And comfortable with me having small parties. Definitely recommend!</p>
+        <p class="light-gray-text">Loved this place. Great location, and great value for a <?php echo $row['bedrooms']?>BD/<?php echo $row['bathrooms']?>BA. The people who lived there were friendly. And comfortable with me having small parties. Definitely recommend!</p>
       </div>
     </div><!--column-->
 
     <div class="col-sm-6">
       <div class="jumbotron my-2">
         <h3>Zune N.</h3>
-        <p class="light-gray-text">The Centurion was a good place to live during my junior year. No complaints from me! Modern, sleek, and with great AC, couldn't have asked for something better.</p>
+        <p class="light-gray-text"><?php echo $row['property_name']?> was a good place to live during my junior year. No complaints from me! Modern, sleek, and with great AC, couldn't have asked for something better.</p>
       </div>
     </div><!--column-->
 
@@ -336,58 +325,56 @@ if ( !isset($_GET['listing_id']) || empty($_GET['listing_id'])) {
 <h4>Similar Listings</h4>
 <br>
 
-    <!-- *************TO DO: ECHO PHP TEMPLATE RECS************* -->
-
   <div class="row text-center">
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="img-gateway/gateway1.jpeg" alt="Gateway Image 1">
+        <img class="card-img-top" src="https://firstchoicehousing.com/pictures/x-large/bcode/1248-01.jpg" alt="Avalon Image 1">
         <div class="card-body">
-          <h4 class="card-title">University Gateway</h4>
-          <p class="card-text">2Br/2B </p>
+          <h4 class="card-title">Avalon Apartments</h4>
+          <p class="card-text">2BD/2BA </p>
         </div>
         <div class="card-footer">
-          <a href="single-listing-gateway.html" class="btn btn-primary">Learn More</a>
+          <a href="single-listing.php?listing_id=18" class="btn btn-primary">Learn More</a>
         </div>
       </div>
     </div><!--column-->
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="img-chez-ronne/chezronne1.jpg" alt="Chez Ronne Image 1">
+        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Cyhg4bmmp9ZqluZOWOgBWpgbVzJGeEEE0jO1RWYcAC_JVL4Z" alt="3025 Mansion Image 1">
         <div class="card-body">
-          <h4 class="card-title">Chez Ronne</h4>
-          <p class="card-text">3Br/2B </p>
+          <h4 class="card-title">3025 Mansion</h4>
+          <p class="card-text">3BD/2BA </p>
         </div>
         <div class="card-footer">
-          <a href="single-listing-chez.html" class="btn btn-primary">Learn More</a>
+          <a href="single-listing.php?listing_id=16" class="btn btn-primary">Learn More</a>
         </div>
       </div>
     </div><!--column-->
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="img-the-shrine/shrine1.jpg" alt="The Shrine Image 1">
+        <img class="card-img-top" src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1596086/0016_573133294_large.jpg" alt="2611 Portland Image 1">
         <div class="card-body">
-          <h4 class="card-title">The Shrine</h4>
-          <p class="card-text">2Br/2B </p>
+          <h4 class="card-title">2611 Portland St.</h4>
+          <p class="card-text">2BD/2BA</p>
         </div>
         <div class="card-footer">
-          <a href="single-listing-shrine.html" class="btn btn-primary">Learn More</a>
+          <a href="single-listing.php?listing_id=14" class="btn btn-primary">Learn More</a>
         </div>
       </div>
     </div><!--column-->
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="img-the-pad/pad1.jpg" alt="The Pad Image 1">
+        <img class="card-img-top" src="https://firstchoicehousing.com/pictures/x-large/bcode/2621-01.jpg" alt="2621 Magnolia Image 1">
         <div class="card-body">
-          <h4 class="card-title">The Pad</h4>
-          <p class="card-text">2Br/2B </p>
+          <h4 class="card-title">2621 Magnolia Ave.</h4>
+          <p class="card-text">2BD/1BA</p>
         </div>
         <div class="card-footer">
-          <a href="single-listing.html" class="btn btn-primary">Learn More</a>
+          <a href="single-listing.php?listing_id=9" class="btn btn-primary">Learn More</a>
         </div>
       </div>
   </div><!--column-->

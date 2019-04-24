@@ -269,7 +269,7 @@
 
               <p class='light-gray-text figure-caption'><?php echo $row['address']?></p>
 
-              <p class='' style='color: #7CBD1E; line-height: 0.25;'>Price: <span class='figure-caption'>from $<?php echo $row['price']?>/month per person</span> </p>
+              <p class='' style='color: #7CBD1E; line-height: 0.25;'>Price: <span class='figure-caption'>from $<?php echo $row['price']?>/month</span> </p>
 
 
              <p class='' style='color: #7CBD1E; line-height: 0.25;'>Management: <span class='figure-caption'><?php echo $row['management']?></span> </p>
