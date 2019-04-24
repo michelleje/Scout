@@ -205,8 +205,9 @@ $mySQL = new mysqli(
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
+          <a href="homepage.php"><img src="img/scoutwhite.png" style="width:8rem;"></a>
         <!--      <a class="navbar-brand" href="#">Logo Here</a>-->
-        <img href="homepage.php" src="img/scoutwhite.png" style="width:8rem;">
+<!--        <img href="homepage.php" src="img/scoutwhite.png" style="width:8rem;">-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
