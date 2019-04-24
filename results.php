@@ -12,7 +12,7 @@ $mySQL = new mysqli(
       exit();
   }
   else{
-      echo "all good with the db connection! ";
+//      echo "all good with the db connection! ";
   }
 ?>
 <?php
@@ -206,23 +206,23 @@ $mySQL = new mysqli(
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <!--      <a class="navbar-brand" href="#">Logo Here</a>-->
-        <img href="#" src="img/scoutwhite.png" style="width:8rem;">
+        <img href="http://460.itpwebdev.com/~delta/front-end/homepage.php" src="img/scoutwhite.png" style="width:8rem;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="http://460.itpwebdev.com/~delta/front-end/about.html">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Listings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Management</a>
+              <a class="nav-link" href="http://460.itpwebdev.com/~delta/front-end/management_companies.php">Management</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
+              <a class="nav-link" href="mailto:jemichel@usc.edu">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -245,9 +245,10 @@ $mySQL = new mysqli(
           <h2>Filters</h2>
 
           <hr>
+            <br>
 
 				<!-- Property Type -->
-				<div class="form-group">
+				<div class="form-group" style="float:left; margin-right: 5px;">
 					<select form="filters" name="property-type" id="property_type">
 						<option value="" selected disabled>Property Type</option>
 						<?php while($row = $results_spacetypes->fetch_assoc() ): ?>
@@ -260,7 +261,7 @@ $mySQL = new mysqli(
 				</div>
 
 					<!-- Management Companies -->
-					<div class="form-group">
+					<div class="form-group" style="float:left; margin-right: 5px;">
 						<select form="filters" name="management-company" id="management_company">
 							<option value="" selected disabled>Management Company</option>
 							<?php while($row = $results_management->fetch_assoc() ): ?>
@@ -271,7 +272,7 @@ $mySQL = new mysqli(
 						</select>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group" style="float:left;">
 						<select form="filters" name="price" id="price">
 							<option value="" selected disabled>Monthly Price</option>
 							<option value="500">$500 or less</option>
