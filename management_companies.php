@@ -11,52 +11,9 @@ $mySQL = new mysqli(
       echo "ERROR ". $mySQL->connect_error;
       exit();
   }
-
-	$sql = "SELECT * FROM management_companies";
-	$results =  $mySQL->query($sql);
-	if( !$results ) {
-           echo "SQL error: ". $mySQL->error;
-           $mySQL->close();
-           exit();
-   };
-
-
-   $results_per_page = 5;
-   $current_page = 1;
-   $num_results = $results->num_rows;
-
-   $last_page = ceil($num_results / $results_per_page);
-
-   if ($num_results == 0) {
-		$last_page = 1;
-	}
-
-	if ( isset($_GET['page']) && !empty($_GET['page']) ) {
-		$current_page = $_GET['page'];
-	}
-
-	if ($current_page < 1 ) {
-		$current_page = 1;
-	} else if ($current_page > $last_page) {
-		$current_page = $last_page;
-	}
-
-	$start_index = ($current_page - 1) * $results_per_page;
-
-
-	$sql = $sql . " LIMIT $start_index, $results_per_page";
-
-	$results =  $mySQL->query($sql);
-	if( !$results ) {
-           echo "SQL error: ". $mySQL->error;
-           $mySQL->close();
-           exit();
-   };
-
-
-   $mySQL->close();
-
-
+  else{
+      // echo "all good with the db connection! ";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -87,18 +44,8 @@ $mySQL = new mysqli(
     color: #7CBD1E;
   }
 
-  .img-listing {
-  	   overflow: hidden;
-  	   width: 100%;
-  	   height: 75%;
-  	   position: relative;
-
-  }
-
-  .imglisting-img{
+  .img-listing img{
     width:100%;
-    overflow: hidden;
-    display: block;
   }
 
   .page-link {
@@ -114,16 +61,7 @@ $mySQL = new mysqli(
     color: #fff;
     background-color: #7CBD1E;
     border-color: #7CBD1E;
-	}
-
-	h3 a, h3 a:hover {
-		color: #096017;
-	}
-
-	.housing hr {
-		border-width: 1px ;
-		border-color: #A9A9AA;
-	}
+}
 
 
 </style>
@@ -158,6 +96,10 @@ $mySQL = new mysqli(
   <!-- Page Content -->
   <div class="container">
 
+
+
+      <!-- <input class="form-control" type="search" placeholder="Search for a specific company." aria-label="Search">
+      <a href="#" class="btn btn-primary btn-lg">Find</a> -->
       <br>
       <br>
       <h2>Local Management Companies</h2>
@@ -165,64 +107,71 @@ $mySQL = new mysqli(
 <hr class="mb-4">
 
 
-    <div class="housing row mx-1 mb-4">
-   
-     <h2>Search Results: <?php if( $num_results == 0) : ?>
-					0
-				<?php else : ?>
+    <!-- Jumbotron Header -->
+<!--     <div class="jumbotron my-4">
+      <h1>Find your new off campus home</h1>
+      <h2>Filters / Results / Title of Page<h2>
+      <h3>Apartment / Management Company</h3>
+      <p>Address Here</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus</p>
+    </div> -->
+    <div class="row">
+    <?php
+     $sql = "SELECT * FROM management_companies";
+     $results =  $mySQL->query($sql);
 
-					<?php echo $start_index + 1 ?> 
-					- 
-					<?php echo $start_index + $results->num_rows; ?>
-
-				<?php endif; ?> 
-				of 
-				<?php echo $num_results ?>
-					result(s).
-				</h2>
-     
-     <?php while($currentrow = $results->fetch_assoc() ) : ?>
-
-      <div class="col-12 jumbotron my-0">
-
-        <div class="col-3 pl-0 img-listing float-left my-auto">
-          <img class="imglisting-img" src="<?php echo $currentrow['management_image']; ?>" alt="">
+       if(!$results) {
+           echo "SQL error: ". $mySQL->error;
+           exit();
+       }
+     echo "<h2># of Listings: ".$results->num_rows."</h2>";
+     while($currentrow = $results->fetch_assoc())
+     {
+      echo "<div class='col-12 jumbotron my-0'>
+        <div class='float-right'>
+          <span class='fa fa-star checked'></span>
+          <span class='fa fa-star checked'></span>
+          <span class='fa fa-star checked'></span>
+          <span class='fa fa-star checked'></span>
+          <span class='fa fa-star'></span>
         </div>
-        <div class="col-9 ml-auto">
-        <h3><a href="<?php echo $currentrow['management_website']; ?>"> <?php echo $currentrow['management_name']; ?></a></h3>
-        <p class="light-gray-text"><?php echo $currentrow['management_address']; ?></p>
-        <p class="light-gray-text"><?php echo $currentrow['management_phone']; ?></p>
-        <p class="light-gray-text"><?php echo $currentrow['management_email']; ?></p>
-        <p class="light-gray-text">Rating: <?php echo $currentrow['management_rating']; ?>/5 Stars</p>
-        <a class="btn btn-primary btn-sm" href="results.html">View Listings</a>
+
+        <div class='col-3 pl-0 img-listing float-left'>
+          <img src='".$currentrow["management_image"]."' alt=''>
+        </div>
+        <h3><a href='".$currentrow["management_website"]."'>".$currentrow["management_name"]."</a></h3>
+        <p class='light-gray-text'>".$currentrow["management_address"]."</p>
+        <p class='light-gray-text'>".$currentrow["management_phone"]."</p>
+        <p class='light-gray-text'>".$currentrow["management_email"]."</p>
+        <p class='light-gray-text'>Rating: ".$currentrow["management_rating"]."/5 Stars</p>
+
         <br>
-        </div>
-      </div>
-      <?php endwhile; ?>
-  	</div> <!-- .housing -->
+
+        <a class='btn btn-primary btn-sm' href='results.html'>View Listings</a>
+      </div>";
+     }
+      ?>
 
 
 
 
     <br>
 
-    <div class="row">
-	    <nav class="col-12 my-1 mx-auto" aria-label="Page navigation">
-	      <ul class="pagination justify-content-center">
-	       <li class="page-item <?php if( $current_page <= 1) { echo 'disabled'; } ?>">
-	          <a class="page-link" href="<?php $_GET['page'] = $current_page - 1; echo $_SERVER['PHP_SELF'] . '?' . http_build_query($_GET) ?>">&larr; Previous</a>
-	       </li>
-	       
-	       <li class="page-item active">
-	       		<a class="page-link" href=""><?php echo $current_page; ?></a>
-	       	</li>
-
-	       <li class="page-item">
-	         <a class="page-link" href="<?php $_GET['page'] = $current_page + 1; echo $_SERVER['PHP_SELF'] . '?' . http_build_query($_GET) ?>">Next &rarr;</a>
-	       </li>
-	      </ul>
-	    </nav>
-	</div> <!-- .row -->
+    <nav aria-label="...">
+      <ul class="pagination justify-content-center">
+       <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">&larr;</a>
+       </li>
+       <li class="page-item active"><a class="page-link" href="#">1</a></li>
+       <li class="page-item">
+          <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+       </li>
+       <li class="page-item"><a class="page-link" href="#">3</a></li>
+       <li class="page-item">
+         <a class="page-link" href="#">&rarr;</a>
+       </li>
+      </ul>
+    </nav>
 
 
 
