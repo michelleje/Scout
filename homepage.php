@@ -1,20 +1,45 @@
-<?php
-$userID = "delta";
-$userPw = "uscItp2019";
-$mySQL = new mysqli(
-    "460.itpwebdev.com",
-    $userID,
-    $userPw,
-    "delta_scout");
 
-    if($mySQL->connect_errno){
-      echo "ERROR ". $mySQL->connect_error;
-      exit();
+<?php
+
+  $host = "460.itpwebdev.com";
+  $user = "delta_admin";
+  $pass = "uscItp2019";
+  $db = "delta_scout";
+
+
+
+  $mysqli = new mysqli($host, $user, $pass, $db);
+
+  if ( $mysqli->connect_errno ){
+    echo $mysqli->connect_error;
+    exit();
   }
-  else{
-      echo "all good with the db connection! ";
+
+  // LISTINGS
+
+  $sql_listings = "SELECT * FROM property_listings;";
+  $results_listings = $mysqli->query($sql_listings);
+  if ( $results_listings == false ) {
+    echo $mysqli->error;
+    $mysqli->close();
+    exit();
   }
+
+  // SPACE TYPES
+
+  $sql_space_types = "SELECT * FROM property_space_types;";
+  $results_space_types = $mysqli->query($sql_space_types);
+  if ( $results_space_types == false ) {
+    echo $mysqli->error;
+    $mysqli->close();
+    exit();
+  }
+
+$mysqli->close();
+
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -90,11 +115,17 @@ $mySQL = new mysqli(
       </div>
       
       <div id="search" class="text-center">
-      <input class="form-control" type="search" placeholder="What are you looking for? Ex: Ellendale Place" aria-label="Search">
-      <a href="results.html" class="btn btn-primary btn-lg">Find</a>
+
+        <form action="results.php" method="GET">
+      <input class="form-control" name="usersearch" type="search" placeholder="What are you looking for? Ex: Ellendale Place" aria-label="Search">
+      <!-- <a href="results.html" class="btn btn-primary btn-lg">Find</a> -->
+      <button class="btn btn-primary btn-lg">Find</button>
+
       <br>
       <br>
-<div class="btn-group">      
+
+
+<!-- div class="btn-group">      
   <button id="bedrooms" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       # of Bedrooms
     </button>
@@ -108,9 +139,37 @@ $mySQL = new mysqli(
 
     </div>
 
-  </div>
+  </div> -->
+
+     <!-- *********THIS PHP WORKS BUT NEEDS TO BE STYLED********* -->
+
+
+    <select name="bedrooms">
+
+        <option value="" selected disabled class="dropdown-item"># Bedrooms</option>
+
+        <option value="" class="dropdown-item">Any</option>
+
+        <option value="0" class="dropdown-item">0</option>
+        <option value="1" class="dropdown-item">1</option>
+        <option value="2" class="dropdown-item">2</option>
+        <option value="3" class="dropdown-item">3</option>
+        <option value="4" class="dropdown-item">4</option>
+        <option value="5" class="dropdown-item">5</option>
+        <option value="6" class="dropdown-item">6</option>
+        <option value="7" class="dropdown-item">7</option>
+        <option value="8" class="dropdown-item">8</option>
+
+
+           
+
+      </select>
+
+    <!-- *********THIS PHP WORKS BUT NEEDS TO BE STYLED********* -->
+
+
         
-<div class="btn-group">      
+<!-- <div class="btn-group">      
   <button id="bathrooms" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       # of Bathrooms
     </button>
@@ -121,30 +180,81 @@ $mySQL = new mysqli(
       <a class="dropdown-item" href="#">4+</a>
       <a class="dropdown-item" href="#">Any</a>
     </div>
-  </div>
+  </div> -->
+
+
+
+    <!-- *********THIS PHP WORKS BUT NEEDS TO BE STYLED********* -->
+
+
+    <select name="bathrooms">
+
+        <option value="" selected disabled class="dropdown-item"># Bathrooms</option>
+
+        <option value="" class="dropdown-item">Any</option>
+
+        <option value="0" class="dropdown-item">0</option>
+        <option value="1" class="dropdown-item">1</option>
+        <option value="2" class="dropdown-item">2</option>
+        <option value="3" class="dropdown-item">3</option>
+        <option value="4" class="dropdown-item">4</option>
+        <option value="5" class="dropdown-item">5</option>
+        <option value="6" class="dropdown-item">6</option>
+        <option value="7" class="dropdown-item">7</option>
+
+          
+
+      </select>
+
+    <!-- *********THIS PHP WORKS BUT NEEDS TO BE STYLED********* -->
+
+
         
-<div class="btn-group">      
+<!-- <div class="btn-group">      
   <button id="propertytype" class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Property Type
+    <label for="property-type" > Property Type</label>
     </button>
-    <select name="property-type" class="dropdown-menu property-menu">
+    <select name="property-type" id="property-type" class="dropdown-menu property-menu">
+
         <option class="dropdown-item" value="all"> Select a property type</option>
-        <option class="dropdown-item" value="all">--------------</option>
-        <?php
-        $sql = "SELECT * FROM property_space_types WHERE type != ''";
-        $results =  $mySQL->query($sql);
-        while($currentrow = $results->fetch_assoc()){
-            echo "<option class='dropdown-item' >".$currentrow["type"]."</option>";
-        }
-        ?>
+        <option class="dropdown-item" value="all">--------------</option> -->
+
+
+
+
+    <!-- *********THIS PHP WORKS BUT NEEDS TO BE STYLED********* -->
+
+
+    <select name="property_type">
+
+        <option value="" selected disabled class="dropdown-item">Property Type</option>
+
+        <option value="" class="dropdown-item">Any</option>
+
+            <?php 
+            while ( $row = $results_space_types->fetch_assoc() ) : 
+            ?>
+
+            <option value="<?php echo $row['space_type_id'] ?>">
+              <?php echo $row['type']; ?>
+            </option>
+
+            <?php endwhile; ?>
+
+      </select>
+
+    <!-- *********THIS PHP WORKS BUT NEEDS TO BE STYLED********* -->
+
+<!-- 
+    
     </select>
-    <!-- <div class="dropdown-menu property-menu">
+    <div class="dropdown-menu property-menu">
       <a class="dropdown-item" href="#">House</a>
       <a class="dropdown-item" href="#">Apartment</a>
       <a class="dropdown-item" href="#">Condo</a>
       <a class="dropdown-item" href="#">Any</a>
-    </div> -->
-</div>
+    </div>
+</div> -->
       
   
       <br>
